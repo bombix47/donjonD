@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculateur de caractéristique</title>
+    <script src="assets/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+<div class="cache"></div>
+<div class="content">
+<img class="logo" src="assets/dj.png" alt="d&d">
+<h1>Calculateur de caractéristiques</h1>
+
+<div class="mod_carac">
+    <div class="points_restant">
+          <input type="number" name="points_restant" id="points_restant" value="20" disabled>
+    </div>
+     <div class="carac">
+         <label for="carac_force">Force</label>
+         <button class="plus">+</button><button class="moins">-</button>
+         <input type="text" name="force" id="carac_force">
+     </div>
+     <div class="carac">
+         <label for="carac_constitution">Constitution</label>
+         <button class="plus">+</button><button class="moins">-</button>
+         <input type="text" name="constitution" id="carac_constitution">
+     </div>
+     <div class="carac">
+         <label for="carac_dexterite">Dexterité</label>
+         <button class="plus">+</button><button class="moins">-</button>
+         <input type="numtextber" name="dexterite" id="carac_dexterite">
+     </div>
+     <div class="carac">
+         <label for="carac_intelligence">Intelligence</label>
+         <button class="plus">+</button><button class="moins">-</button>
+         <input type="text" name="intelligence" id="carac_intelligence">
+     </div>
+     <div class="carac">
+         <label for="carac_sagesse">Sagesse</label>
+         <button class="plus">+</button><button class="moins">-</button>
+         <input type="text" name="sagesse" id="carac_sagesse">
+     </div>
+     <div class="carac">
+         <label for="carac_charisme">Charisme</label>
+         <button class="plus">+</button><button class="moins">-</button>
+         <input type="text" name="charisme" id="carac_charisme">
+     </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<script>
+    var _FOR_BASE, _CON_BASE, _DEX_BASE, _INT_BASE, _SAG_BASE, _CHA_BASE = 10;
+    var couts_ajouts = {
+        8:1,9:1,
+      10 : 1, 11 : 1, 12 : 1,
+        13 : 2, 14 : 2, 15 : 2,
+        16 : 3,
+        17 : 4
+    };
+    var couts_soustraction = {
+        8:1,9:1,10:1,
+        11 : 1, 12 : 1, 13 : 1,
+        14 : 2, 15 : 2, 16 : 2,
+        17 : 3,
+        18 : 4
+    };
+    var _user_stat = function(){
+        this.stats ={FOR : 10, CON : 10, DEX : 10, INT : 10, SAG : 10, CHA : 10};
+        $('.carac input').val(10);
+        this.getStat = function(KEY){
+            return this.stats[KEY];
+        };
+        this.setStat = function(KEY,VALUE ){
+            this.stats[KEY] = VALUE;
+        };
+    };
+    $(document).ready(function () {
+
+        var user = new _user_stat();
+
+        $('.carac .plus').click(function(){
+            if(+$('.points_restant input').val() == 0 || +$(this).parent().find('input').val()==18){
+                return;
+            }
+            var valeur_actuelle = +$(this).parent().find('input').val();
+            var cout = +couts_ajouts[valeur_actuelle];
+            var nouvelle_valeur = valeur_actuelle + 1;
+            var nouveaux_points = +$('.points_restant input').val()-cout;
+            if(nouveaux_points<0){
+                return;
+            }
+            $('.points_restant input').val(nouveaux_points);
+            $(this).parent().find('input').val(nouvelle_valeur);
+        });
+        $('.carac .moins').click(function(){
+            //console.log($(this).parent().find('input').val());
+            if(+$('.points_restant input').val() == 22 || +$(this).parent().find('input').val()==8){
+                return;
+            }
+            var valeur_actuelle = +$(this).parent().find('input').val();
+            var cout = +couts_soustraction[valeur_actuelle];
+            var nouvelle_valeur = valeur_actuelle - 1;
+            var nouveaux_points = +$('.points_restant input').val()+cout;
+            console.log(nouveaux_points);
+            if(nouveaux_points>22){
+                return;
+            }
+            $('.points_restant input').val(nouveaux_points);
+            $(this).parent().find('input').val(nouvelle_valeur);
+        })
+
+    })
+</script>

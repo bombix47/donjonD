@@ -1,0 +1,91 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+    font-family: Arial;
+}
+
+h1{
+    font-family: Arial;
+    color: #73a1fa;
+    font-size: 18px;
+    line-height: 40px;
+
+}
+html,body{
+    position: relative;
+    height : 100%;
+}
+body{
+    background: url("assets/wallpaper.jpg");
+    background-repeat:no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+.cache{
+    z-index: 50;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    filter: blur(300px);
+}
+.content {
+    position: absolute;
+    height: 420px;
+    z-index: 100;
+    width: 300px;
+    background-color: #cacaca;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%,50%);
+    padding: 10px;
+    border: 5px solid #c69d42;
+    border-radius: 10px;
+}
+.logo{
+    width : 100%;
+}
+.carac{
+    position : relative;
+    width : 100%;
+    height : 30px;
+    clear : both;
+}
+.carac label{
+    float : left;
+    font-weight: 700;
+    line-height: 30px;
+}
+.carac input{
+    margin-right:100px;
+}
+.mod_carac input{
+    width : 30px;
+    padding: 5px;
+    float : right;
+}.mod_carac input#points_restant{
+     margin-bottom: 30px;
+     font-size: 18px;
+     font-weight: 700;
+     background: none;
+     border: 1px solid;
+     text-align: center;
+     width: 100%;
+}
+.mod_carac button {
+    width: 20px;
+    font-size: 25px;
+    height: 20px;
+    line-height: 0px;
+    float : right;
+    margin-top:5px;
+}
+.mod_carac button.plus {
+    color: #73a1fa;
+}
+.mod_carac button.moins {
+    color: #fa373a;
+}
